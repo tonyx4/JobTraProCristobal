@@ -1,0 +1,334 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Variables globales */
+:root {
+    --bg: #f4f6f8;
+    --accent: #0e3b44;
+    --accent-2: #163e44;
+    --muted: #6b7280;
+    --card: #ffffff;
+    --primary: #0b6b73;
+    --gap: 20px;
+}
+
+/* Estilo base */
+body {
+    font-family: 'Inter', system-ui, Arial, sans-serif;
+    background: var(--bg);
+    color: #122;
+    line-height: 1.6;
+}
+
+/* Párrafos justificados */
+p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Layout principal */
+.resume {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: var(--gap);
+    max-width: 1100px;
+    margin: 28px auto;
+    padding: 24px;
+}
+
+/* Columna izquierda */
+.left {
+    background: var(--card);
+    padding: 28px;
+    border-radius: 8px;
+}
+
+/* Columna derecha */
+.right {
+    background: var(--accent);
+    color: #fff;
+    padding: 28px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+}
+
+/* Franja del nombre */
+.name-banner {
+    background: var(--primary);
+    color: #fff;
+    text-align: center;
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.name-banner h1 {
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.name-banner p {
+    margin-top: 4px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* Perfil */
+.profile .summary {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* Bloques */
+.block {
+    margin-top: 20px;
+}
+
+.block h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--accent-2);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+}
+
+/* Experiencia laboral */
+.job {
+    margin-bottom: 14px;
+}
+
+.job h3 {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.job .period {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.job ul {
+    margin-top: 8px;
+    list-style: disc;
+    padding-left: 18px;
+}
+
+/* Foto */
+.right .photo {
+    display: flex;
+    justify-content: center;
+}
+
+.right .photo img {
+    width: 120px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 4px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Títulos dentro de la columna derecha */
+.right .block h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 4px;
+}
+
+/* Contacto y referencia */
+.right .contact ul,
+.right .reference ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.right a {
+    color: #e6f7f9;
+    text-decoration: underline;
+}
+
+.contact li,
+.reference li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.contact i,
+.reference i {
+    color: #fff;
+    font-size: 15px;
+    min-width: 20px;
+}
+
+/* Skills */
+.right .skills ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.skill-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+.dots {
+    display: inline-block;
+    width: 80px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    position: relative;
+}
+
+.dots::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #fff;
+    border-radius: 3px;
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.dots[data-level="5"]::after { transform: scaleX(1); }
+.dots[data-level="4"]::after { transform: scaleX(0.9); }
+.dots[data-level="3"]::after { transform: scaleX(0.8); }
+.dots[data-level="2"]::after { transform: scaleX(0.8); }
+.dots[data-level="1"]::after { transform: scaleX(0.8); }
+
+
+/* Botón PDF */
+.actions button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 0;
+    background: #0b9aa0;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.actions button:hover {
+    opacity: 0.95;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .resume {
+        grid-template-columns: 1fr;
+        padding: 12px;
+    }
+
+    .right {
+        order: -1;
+    }
+}
+
+/* Página de certificación */
+.cert-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.cert-container {
+    background: var(--card);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+}
+
+.cert-container h1 {
+    font-size: 24px;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.cert-container p {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.cert-container img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.2s ease-in-out;
+}
+
+.back-link:hover {
+    background: #0b9aa0;
+}
+
+.certification-link {
+    color: #122;
+    text-decoration: none;
+}
+/* Forzar puntos delante de cada habilidad */
+.skill-list li::before {
+    content: "■"; /* Puedes usar "•" o cualquier símbolo */
+    color: #fff; /* Color del punto */
+    font-size: 12px; /* Tamaño del punto */
+    margin-right: 8px; /* Espacio entre el punto y el texto */
+}
+.skill-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+.skill-list li::before {
+    content: "■"; /* o "•" si prefieres círculo */
+    color: #fff;
+    font-size: 10px;
+    margin-right: 8px;
+}
+/* Todas las barras al 100% blancas */
+.dots::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;   /* Ocupa toda la barra */
+    height: 100%;
+    background: #fff;
+    border-radius: 3px;
+}
