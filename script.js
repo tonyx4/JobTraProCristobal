@@ -1,32 +1,80 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const imgName = params.get('img');
+/* =============================
+SCRIPT PRINCIPAL
+Control general del CV y menús desplegables
+============================= */
 
-    const certTitleEl = document.getElementById('cert-title');
-    const certImageEl = document.getElementById('cert-image');
+document.addEventListener("DOMContentLoaded", () => {
+console.log("Página cargada correctamente.");
 
-    // Mapeo de certificaciones
-    const certificationMap = {
-        '01img.jpg': 'Análisis y Desarrollo de Software (En curso)',
-        '02img.jpg': 'Bootcamp MinTIC - Talento Tech - Unilibre',
-        '03img.jpg': 'Variables y Estructuras de Control en Python',
-        '04img.jpg': 'Daxus Latam Python en la Práctica',
-        '05img.jpg': 'Estrategias Pedagógicas para el Desarrollo del Pensamiento',
-        '06img.jpg': 'Pedagogía Humana',
-        '07img.jpg': 'Controles y Seguridad Informática',
-        '08img.jpg': 'Analítica de Datos para Procesos Logísticos',
-        '09img.jpg': 'Metodología de Programación de Sistemas Informáticos',
-        '10img.jpg': 'Procesos de Soporte Técnico para el Mantenimiento de Equipos de Cómputo',
-        '11img.jpg': 'Inducción a los Procesos Pedagógicos',
-        '12img.jpg': 'ISO 9001: Fundamentos de un Sistema de Gestión de la Calidad',
-        '13img.jpg': 'Inglés DOT Works 1',
-    };
+// ====== FUNCIÓN: GENERAR PDF ======
+const downloadBtn = document.getElementById("downloadPdf");
+if (downloadBtn) {
+downloadBtn.addEventListener("click", () => {
+const element = document.getElementById("resume");
+if (element) {
+const opt = {
+margin: 0,
+filename: "CV_Cristobal_Cantillo.pdf",
+image: { type: "jpeg", quality: 1 },
+html2canvas: { scale: 4, useCORS: true },
+jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },
+pagebreak: { mode: ["avoid-all"] },
+};
+html2pdf().set(opt).from(element).save();
+}
+});
+}
 
-    if (imgName && certTitleEl && certImageEl) {
-        certTitleEl.textContent = certificationMap[imgName] || 'Certificación no encontrada';
-        certImageEl.src = `assets/img/${imgName}`;
-    } else {
-        certTitleEl.textContent = 'Certificación no encontrada.';
-        if (certImageEl) certImageEl.style.display = 'none';
-    }
+// ====== FUNCIÓN: ENLACES DE CERTIFICACIÓN (CORREGIDO) ======
+const certificationLinks = document.querySelectorAll(".Certifications-details a");
+certificationLinks.forEach(link => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        
+        // 1. Obtener la URL base (que ya tiene el parámetro img)
+        const baseUrl = link.getAttribute("href");
+        
+        // 2. Obtener el nombre de la certificación de data-name
+        const name = link.dataset.name || "Certification";
+        
+        // **3. Crear la URL COMPLETA con el parámetro de nombre**
+        // Usamos encodeURIComponent para manejar nombres con espacios o caracteres especiales
+        const fullUrl = `${baseUrl}&name=${encodeURIComponent(name)}`; 
+        
+        console.log(`Abriendo certificación: ${name} con URL: ${fullUrl}`);
+        
+        // 4. Abrir la nueva ventana con la URL completa
+        window.open(fullUrl, "_blank");
+    });
+});
+
+// ====== FUNCIÓN: MENÚ DESPLEGABLE GENERAL ======
+const dropdowns = document.querySelectorAll(".dropdown");
+dropdowns.forEach(drop => {
+const content = drop.querySelector(".dropdown-content");
+if (content) {
+drop.addEventListener("mouseenter", () => {
+content.style.display = "block";
+});
+drop.addEventListener("mouseleave", () => {
+content.style.display = "none";
+});
+}
+});
+
+// ====== FUNCIÓN: OCULTAR LISTADO DE TRAINING & CERTIFICATION ======
+const trainingSection = document.querySelector(".Training");
+if (trainingSection) {
+const details = trainingSection.querySelector("details");
+if (details) {
+// Abre el listado al pasar el mouse
+trainingSection.addEventListener("mouseenter", () => {
+details.setAttribute("open", true);
+});
+// Lo cierra al retirar el cursor
+trainingSection.addEventListener("mouseleave", () => {
+details.removeAttribute("open");
+});
+}
+}
 });

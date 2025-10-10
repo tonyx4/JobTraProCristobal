@@ -1,109 +1,135 @@
-/* Reset básico */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* =============================
+ESTILOS GENERALES
+============================= */
 
-/* Variables globales */
-:root {
-    --bg: #f4f6f8;
-    --accent: #0e3b44;
-    --accent-2: #163e44;
-    --muted: #6b7280;
-    --card: #ffffff;
-    --primary: #0b6b73;
-    --gap: 20px;
-}
-
-/* Estilo base */
 body {
-    font-family: 'Inter', system-ui, Arial, sans-serif;
-    background: var(--bg);
-    color: #122;
-    line-height: 1.6;
+font-family: Arial, Helvetica, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f8f8f8;
+color: #333;
 }
 
-/* Párrafos justificados */
-p {
-    text-align: justify;
-    text-justify: inter-word;
+header {
+background-color: #002b5c;
+color: white;
+padding: 15px 0;
+text-align: center;
 }
 
-/* Layout principal */
-.resume {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: var(--gap);
-    max-width: 1100px;
-    margin: 28px auto;
-    padding: 24px;
+header h1 {
+margin: 0;
+font-size: 1.8em;
 }
 
-/* Columna izquierda */
-.left {
-    background: var(--card);
-    padding: 28px;
-    border-radius: 8px;
+nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: center;
+background-color: #004080;
 }
 
-/* Columna derecha */
-.right {
-    background: var(--accent);
-    color: #fff;
-    padding: 28px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    justify-content: center;
+nav ul li {
+position: relative;
 }
 
-/* Franja del nombre */
-.name-banner {
-    background: var(--primary);
-    color: #fff;
-    text-align: center;
-    padding: 16px;
-    margin-bottom: 20px;
-    border-radius: 6px;
+nav ul li a {
+display: block;
+padding: 14px 20px;
+color: white;
+text-decoration: none;
+font-weight: bold;
 }
 
-.name-banner h1 {
-    font-size: 22px;
-    letter-spacing: 1px;
-    font-weight: 700;
+nav ul li a:hover {
+background-color: #0059b3;
 }
 
-.name-banner p {
-    margin-top: 4px;
-    font-size: 14px;
-    font-weight: 400;
+/* =============================
+MENÚ DESPLEGABLE (HOVER)
+============================= */
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #004080;
+min-width: 250px;
+box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+z-index: 1;
+top: 100%;
+left: 0;
+border-radius: 0 0 6px 6px;
 }
 
-/* Perfil */
-.profile .summary {
-    color: var(--muted);
-    font-size: 14px;
+.dropdown-content li {
+width: 100%;
 }
 
-/* Bloques */
-.block {
-    margin-top: 20px;
+.dropdown-content li a {
+padding: 12px 16px;
+color: white;
+text-decoration: none;
+display: block;
+font-weight: normal;
 }
 
-.block h2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: var(--accent-2);
-    border-bottom: 2px solid #eee;
-    padding-bottom: 6px;
+.dropdown-content li a:hover {
+background-color: #0066cc;
 }
 
-/* Experiencia laboral */
-.job {
-    margin-bottom: 14px;
+.dropdown:hover .dropdown-content {
+display: block;
 }
+
+/* =============================
+CONTENIDO PRINCIPAL
+============================= */
+
+main {
+padding: 20px;
+}
+
+section {
+margin-bottom: 40px;
+background: white;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+color: #002b5c;
+}
+
+/* =============================
+PIE DE PÁGINA
+============================= */
+
+footer {
+background-color: #002b5c;
+color: white;
+text-align: center;
+padding: 10px 0;
+font-size: 0.9em;
+}
+
+/* =============================
+RESPONSIVE DESIGN
+============================= */
+
+@media (max-width: 768px) {
+nav ul {
+flex-direction: column;
+}
+
+.dropdown-content {
+position: static;
+box-shadow: none;
+}
+}
+
 
 .job h3 {
     font-weight: 600;
@@ -121,18 +147,24 @@ p {
     padding-left: 18px;
 }
 
-/* Foto */
+/* Foto personal con fondo blanco */
 .right .photo {
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-color: #ffffff;   /* Fondo blanco */
+    padding: 10px;              /* Espacio interno */
+    border-radius: 10px;        /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0,0,0,0.15); /* Sombra suave */
+    margin-bottom: 20px;        /* Separación inferior */
 }
 
 .right .photo img {
     width: 120px;
     height: 140px;
     object-fit: cover;
-    border-radius: 4px;
-    border: 4px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;         /* Bordes suaves para la imagen */
+    border: 2px solid #ccc;     /* Borde gris claro */
 }
 
 /* Títulos dentro de la columna derecha */
@@ -185,6 +217,13 @@ p {
     font-size: 14px;
 }
 
+.skill-list li::before {
+    content: "■";
+    color: #fff;
+    font-size: 10px;
+    margin-right: 8px;
+}
+
 .dots {
     display: inline-block;
     width: 80px;
@@ -199,19 +238,11 @@ p {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
     height: 100%;
     background: #fff;
     border-radius: 3px;
-    transform-origin: left;
-    transition: transform 0.5s ease;
 }
-
-.dots[data-level="5"]::after { transform: scaleX(1); }
-.dots[data-level="4"]::after { transform: scaleX(0.9); }
-.dots[data-level="3"]::after { transform: scaleX(0.8); }
-.dots[data-level="2"]::after { transform: scaleX(0.8); }
-.dots[data-level="1"]::after { transform: scaleX(0.8); }
-
 
 /* Botón PDF */
 .actions button {
@@ -300,35 +331,128 @@ p {
     color: #122;
     text-decoration: none;
 }
-/* Forzar puntos delante de cada habilidad */
-.skill-list li::before {
-    content: "■"; /* Puedes usar "•" o cualquier símbolo */
-    color: #fff; /* Color del punto */
-    font-size: 12px; /* Tamaño del punto */
-    margin-right: 8px; /* Espacio entre el punto y el texto */
-}
-.skill-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 0;
-    font-size: 14px;
+
+/* Ajustes de impresión */
+@media print {
+    body {
+        background: #fff;
+    }
+
+    .resume {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
 }
 
-.skill-list li::before {
-    content: "■"; /* o "•" si prefieres círculo */
-    color: #fff;
-    font-size: 10px;
-    margin-right: 8px;
+/* Ajuste impresión en PDF */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .cv-container {
+        display: flex;
+        flex-direction: row;
+        width: 210mm;
+        /* A4 */
+        height: 297mm;
+        /* A4 */
+        box-shadow: none;
+        border: none;
+        overflow: hidden;
+    }
+
+    .btn-pdf {
+        display: none;
+        /* Ocultar botón al imprimir */
+    }
+
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
 }
-/* Todas las barras al 100% blancas */
-.dots::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;   /* Ocupa toda la barra */
-    height: 100%;
-    background: #fff;
-    border-radius: 3px;
+
+.certifications {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.certifications a {
+    text-decoration: none;
+    text-align: center;
+    width: 45%;
+}
+
+.certifications img {
+    width: 100%;
+    max-width: 180px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+/* ===== Menú Training & Certification (Hover oculto) ===== */
+.training-menu {
+  position: relative;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.menu-title {
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+/* Ocultar lista por defecto */
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+  padding: 10px;
+  list-style: none;
+  margin: 0;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+/* Mostrar cuando el mouse está sobre el título o el contenedor */
+.training-menu:hover .dropdown {
+  display: block;
+}
+
+/* Estilo de enlaces dentro del menú */
+.dropdown li {
+  margin: 5px 0;
+}
+
+.dropdown a {
+  text-decoration: none;
+  color: #0000ee;
+}
+
+.dropdown a:hover {
+  text-decoration: underline;
+}
+/* === Fondo blanco para la foto personal === */
+.right .photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;   /* Fondo blanco */
+    padding: 10px;              /* Espacio interno */
+    border-radius: 10px;        /* Bordes redondeados */
+    box-shadow: 0 0 8px rgba(0,0,0,0.1); /* Sombra suave */
+    margin-bottom: 20px;        /* Separación inferior */
+}
+
+.right .photo img {
+    width: 120px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #ddd;     /* Borde gris claro alrededor de la foto */
 }
